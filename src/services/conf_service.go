@@ -2,9 +2,11 @@ package services
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"models"
 	"os"
+	"strings"
 	"sync"
 )
 
@@ -16,30 +18,33 @@ var confServiceInstance *ConfService
 var confServiceOnce sync.Once
 
 func NewConfService() *ConfService {
-	confServiceOnce.Do(func() {
-		confServiceInstance = &ConfService{}
-		err := confServiceInstance.readConfiguration()
-		if err != nil {
-			log.Fatal("Failed init configuration file", err)
-		}
-	})
+	if len(os.Args) == 1 || len(os.Args) > 1 && !strings.HasSuffix(os.Args[1], "-test.v") {
+		confServiceOnce.Do(func() {
+			confServiceInstance = &ConfService{}
+			fmt.Println("normal run")
+			filename := "src\\config\\tsconfig.json"
+			var err error
+			confServiceInstance.Config, err = confServiceInstance.ReadConfiguration(filename)
+			if err != nil {
+				log.Fatal("Failed init configuration file", err)
+			}
+		})
+	}
 	return confServiceInstance
 }
 
-func (c *ConfService) readConfiguration() error {
+func (c *ConfService) ReadConfiguration(filename string) (models.Configuration, error) {
 	log.Println("Start init configuration file")
-	filename := "src\\config\\tsconfig.json"
 	file, err := os.Open(filename)
 	if err != nil {
-		return err
+		return models.Configuration{}, err
 	}
 	decoder := json.NewDecoder(file)
 	var conf models.Configuration
 	err = decoder.Decode(&conf)
 	if err != nil {
-		return err
+		return models.Configuration{}, err
 	}
-	c.Config = conf
 	log.Println("Init of the configuration file was completed successfully")
-	return nil
+	return conf, nil
 }
