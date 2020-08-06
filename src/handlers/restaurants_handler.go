@@ -13,6 +13,7 @@ import (
 	"utils"
 )
 
+//  Request example: [GET] http://localhost:8080/api/v1/restaurants
 func GetAllRestaurants(w http.ResponseWriter, r *http.Request) {
 	log.Println("Get all restaurants request was received")
 	rms := services.NewRestaurantManagerService()
@@ -26,6 +27,13 @@ func GetAllRestaurants(w http.ResponseWriter, r *http.Request) {
 	log.Println("Get all restaurants request was completed successfully")
 }
 
+//  Request example: [PUT] http://localhost:8080/api/v1/restaurant/Giraffe
+//  Body: {	"name":"Giraffe1",
+//			"type":"Asian1",
+//			"phone":"123",
+//			"location":"32.109805/34.840232"
+//		  }
+//  Note - in the URL old name, in the body new name
 func EditRestaurant(w http.ResponseWriter, r *http.Request) {
 	log.Println("Edit restaurant request was received")
 	oldRestName, err := validateInputParameter(r)
@@ -58,6 +66,7 @@ func EditRestaurant(w http.ResponseWriter, r *http.Request) {
 	log.Println("Edit restaurant request was completed successfully")
 }
 
+//  Request example: [DELETE] http://localhost:8080/api/v1/restaurant/Giraffe
 func DeleteRestaurant(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete restaurant request was received")
 	name, err := validateInputParameter(r)
