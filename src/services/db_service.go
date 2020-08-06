@@ -54,7 +54,7 @@ const selectAllRestaurants = "SELECT Name, Type, Phone, Location FROM Restaurant
 func (dbs *DbService) GetAllRestaurants() ([]models.Restaurant, error) {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		dbs.ConfSrv.Config.Host, dbs.ConfSrv.Config.DbPort, dbs.ConfSrv.Config.User,
-		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.Dbname)
+		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.DbName)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "Failed to open Postgresql connection")
@@ -94,7 +94,7 @@ func (dbs *DbService) InsertRestaurants(restaurants []models.Restaurant) error {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		dbs.ConfSrv.Config.Host, dbs.ConfSrv.Config.DbPort, dbs.ConfSrv.Config.User,
-		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.Dbname)
+		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.DbName)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		return stacktrace.Propagate(err, "Failed to open Postgresql connection")
@@ -127,7 +127,7 @@ func (dbs *DbService) InsertRestaurants(restaurants []models.Restaurant) error {
 func (dbs *DbService) UpdateRestaurant(oldRestName string, rest models.Restaurant) error {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		dbs.ConfSrv.Config.Host, dbs.ConfSrv.Config.DbPort, dbs.ConfSrv.Config.User,
-		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.Dbname)
+		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.DbName)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		return stacktrace.Propagate(err, "Failed to open Postgresql connection")
@@ -159,7 +159,7 @@ func (dbs *DbService) UpdateRestaurant(oldRestName string, rest models.Restauran
 func (dbs *DbService) DeleteRestaurant(name string) error {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		dbs.ConfSrv.Config.Host, dbs.ConfSrv.Config.DbPort, dbs.ConfSrv.Config.User,
-		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.Dbname)
+		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.DbName)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		return stacktrace.Propagate(err, "Failed to open Postgresql connection")
@@ -191,7 +191,7 @@ func (dbs *DbService) DeleteRestaurant(name string) error {
 func (dbs *DbService) executeSQLQuery(query string) error {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		dbs.ConfSrv.Config.Host, dbs.ConfSrv.Config.DbPort, dbs.ConfSrv.Config.User,
-		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.Dbname)
+		dbs.ConfSrv.Config.Password, dbs.ConfSrv.Config.DbName)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		return stacktrace.Propagate(err, "Failed to open Postgresql connection")

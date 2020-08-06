@@ -9,7 +9,7 @@ type Configuration struct {
 	DbPort   int    `json:"DbPort"`
 	User     string `json:"User"`
 	Password string `json:"Password"`
-	Dbname   string `json:"Dbname"`
+	DbName   string `json:"DbName"`
 
 	GoogleMapsAPIKey string `json:"GoogleMapsAPIKey"`
 }

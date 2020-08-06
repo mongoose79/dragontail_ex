@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/palantir/stacktrace"
 	"googlemaps.github.io/maps"
-	"log"
 	"models"
 	"strconv"
 	"strings"
@@ -91,7 +90,7 @@ func (rms *RestaurantManagerService) getAddressByLocation(location string) (stri
 
 	resp, err := client.ReverseGeocode(context.Background(), r)
 	if err != nil {
-		log.Fatalf("fatal error: %s", err)
+		return "", stacktrace.Propagate(err, "Failed to reverse geocode")
 	}
 
 	return resp[0].FormattedAddress, nil

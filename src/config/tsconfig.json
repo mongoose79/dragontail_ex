@@ -7,7 +7,7 @@
   "DbPort":           5432,
   "User":             "postgres",
   "Password":         "sa",
-  "Dbname":           "DragonTailDB",
+  "DbName":           "DragonTailDB",
 
   "GoogleMapsAPIKey": "123"
 }

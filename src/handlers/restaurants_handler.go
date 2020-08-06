@@ -33,7 +33,7 @@ func GetAllRestaurants(w http.ResponseWriter, r *http.Request) {
 //			"phone":"123",
 //			"location":"32.109805/34.840232"
 //		  }
-//  Note - in the URL old name, in the body new name
+//  Note - in the URL old restaurant name, in the body new restaurant name
 func EditRestaurant(w http.ResponseWriter, r *http.Request) {
 	log.Println("Edit restaurant request was received")
 	oldRestName, err := validateInputParameter(r)
