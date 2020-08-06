@@ -84,7 +84,7 @@ func (rms *RestaurantManagerService) getAddressByLocation(location string) (stri
 		LatLng: &maps.LatLng{Lat: lat, Lng: lng},
 	}
 
-	client, err := maps.NewClient(maps.WithAPIKey("AIzaSyBII19d2e9MzI_VD2ocSu79lOqnJ62xJxE\n"))
+	client, err := maps.NewClient(maps.WithAPIKey(rms.ConfSrv.Config.GoogleMapsAPIKey))
 	if err != nil {
 		return "", stacktrace.Propagate(err, "Failed to init Google maps client")
 	}

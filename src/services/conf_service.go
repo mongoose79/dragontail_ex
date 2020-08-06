@@ -2,7 +2,6 @@ package services
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"models"
 	"os"
@@ -18,18 +17,20 @@ var confServiceInstance *ConfService
 var confServiceOnce sync.Once
 
 func NewConfService() *ConfService {
-	if len(os.Args) == 1 || len(os.Args) > 1 && !strings.HasSuffix(os.Args[1], "-test.v") {
-		confServiceOnce.Do(func() {
-			confServiceInstance = &ConfService{}
-			fmt.Println("normal run")
-			filename := "src\\config\\tsconfig.json"
-			var err error
-			confServiceInstance.Config, err = confServiceInstance.ReadConfiguration(filename)
-			if err != nil {
-				log.Fatal("Failed init configuration file", err)
-			}
-		})
-	}
+	confServiceOnce.Do(func() {
+		confServiceInstance = &ConfService{}
+		var fileName string
+		if len(os.Args) == 1 || len(os.Args) > 1 && !strings.HasSuffix(os.Args[1], "-test.v") {
+			fileName = "src\\config\\tsconfig.json"
+		} else {
+			fileName = "C:\\workspace\\dragontail_ex\\src\\config\\tsconfig.json"
+		}
+		var err error
+		confServiceInstance.Config, err = confServiceInstance.ReadConfiguration(fileName)
+		if err != nil {
+			log.Fatal("Failed init configuration file", err)
+		}
+	})
 	return confServiceInstance
 }
 

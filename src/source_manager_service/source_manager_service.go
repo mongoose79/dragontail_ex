@@ -30,8 +30,11 @@ func NewSourceManagerService() *SourceManagerService {
 	return sourceManagerServiceInstance
 }
 
-func (s *SourceManagerService) LoadCsvSourceFile() error {
-	csvFile, err := os.Open(s.ConfSrv.Config.CSVSourceFile)
+func (s *SourceManagerService) LoadCsvSourceFile(fileName string) error {
+	if fileName == "" {
+		fileName = s.ConfSrv.Config.CSVSourceFile
+	}
+	csvFile, err := os.Open(fileName)
 	if err != nil {
 		return stacktrace.Propagate(err, "Failed to open the source CSV file")
 	}

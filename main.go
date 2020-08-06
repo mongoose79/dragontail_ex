@@ -16,7 +16,7 @@ func main() {
 	log.Println("Starting DragonTail system...")
 
 	sms := source_manager_service.NewSourceManagerService()
-	err := sms.LoadCsvSourceFile()
+	err := sms.LoadCsvSourceFile("")
 	if err != nil {
 		log.Fatal("Failed to load CSV source file", err)
 	}

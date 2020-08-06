@@ -1,11 +1,13 @@
 {
-  "ServicePort":    8080,
+  "ServicePort":      8080,
 
-  "CSVSourceFile":  "restaurants.csv",
+  "CSVSourceFile":    "restaurants.csv",
 
-  "Host":           "localhost",
-  "DbPort":         5432,
-  "User":           "postgres",
-  "Password":       "sa",
-  "Dbname":         "DragonTailDB"
+  "Host":             "localhost",
+  "DbPort":           5432,
+  "User":             "postgres",
+  "Password":         "sa",
+  "Dbname":           "DragonTailDB",
+
+  "GoogleMapsAPIKey": "123"
 }
